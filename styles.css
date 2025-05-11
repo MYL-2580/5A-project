@@ -96,16 +96,17 @@ header p {
 /* Updated styles for image gallery */
 .gallery-images {
     display: flex;
-    gap: 10px;
-    overflow-x: auto;
+    flex-direction: column;
+    gap: 15px;
     padding: 10px;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .gallery-images img {
-    max-width: 200px;
-    max-height: 150px;
+    max-width: 100%;
+    max-height: 450px;
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -113,8 +114,16 @@ header p {
 }
 
 .gallery-images img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-images .caption {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.5em;
+    color: #333;
+    font-weight: bold;
 }
 
 /* Form styles */

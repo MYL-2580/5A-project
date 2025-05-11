@@ -223,23 +223,40 @@
 
         function updateGallery() {
             galleryContainer.innerHTML = '';
+            
+            // 创建一个包装容器
+            const wrapper = document.createElement('div');
+            wrapper.style.display = 'flex';
+            wrapper.style.flexDirection = 'column';
+            wrapper.style.alignItems = 'center';
+            wrapper.style.width = '100%';
+            
+            // 创建图片元素
             const img = document.createElement('img');
             img.src = galleryImages[currentIndex].src;
             img.alt = galleryImages[currentIndex].name;
-            img.style.width = '100%';
-            img.style.height = 'calc(100vh - 100px)';
+            img.style.maxWidth = '90%';
+            img.style.maxHeight = '400px';
             img.style.objectFit = 'cover';
-
+            img.style.borderRadius = '8px';
+            img.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+            
+            // 创建标题元素
             const caption = document.createElement('div');
             caption.textContent = galleryImages[currentIndex].name;
             caption.style.textAlign = 'center';
-            caption.style.marginTop = '10px';
+            caption.style.marginTop = '15px';
             caption.style.fontSize = '1.5em';
             caption.style.color = '#333';
             caption.style.fontWeight = 'bold';
-
-            galleryContainer.appendChild(img);
-            galleryContainer.appendChild(caption);
+            caption.className = 'caption';
+            
+            // 将元素添加到包装容器
+            wrapper.appendChild(img);
+            wrapper.appendChild(caption);
+            
+            // 将包装容器添加到画廊
+            galleryContainer.appendChild(wrapper);
         }
 
         function showNextImage() {
