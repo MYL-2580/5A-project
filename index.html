@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>西北 5A 级景区旅游攻略</title>
+    <title>西北5A级景区旅游攻略</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+
+<body class="northwest-theme">
     <div class="container">
-        <header>
-            <h1 id="dynamic-greeting">欢迎来到西北 5A 级景区旅游攻略</h1>
-            <p>根据您的喜好和需求，为您量身定制最适合的西北 5A 级景区旅游方案</p>
+        <header class="northwest-theme">
+            <h1 id="dynamic-greeting">欢迎来到西北5A级景区旅游攻略</h1>
+            <p>根据您的喜好和需求，为您量身定制最适合的西北5A级景区旅游方案</p>
         </header>
 
         <div class="search-container">
-            <h2>快速搜索景点</h2>
-            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 10px;">
-                <input type="text" id="search-input" placeholder="请输入景点名称" style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-                <button id="search-button" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">搜索</button>
+            <h2 class="northwest-theme">快速搜索景点</h2>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 10px; position: relative;">
+                <input type="text" id="search-input" placeholder="请输入景点名称" aria-label="搜索景点名称"
+                    style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                <div id="suggestion-list" class="suggestion-list"></div>
+                <button id="search-button" class="northwest-theme">搜索</button>
             </div>
         </div>
 
-        <div class="image-gallery" id="image-gallery">
-            <h2>精选景点图片</h2>
+        <div class="image-gallery">
+            <h2 class="northwest-theme">精选景点图片</h2>
             <div class="gallery-container">
-                <button class="gallery-button" id="prev-button">&lt;</button>
+                <button class="gallery-button northwest-theme" id="prev-button">&lt;</button>
                 <div class="gallery-images" id="gallery-images">
                     <!-- 图片将通过 JavaScript 动态加载 -->
                 </div>
-                <button class="gallery-button" id="next-button">&gt;</button>
+                <button class="gallery-button northwest-theme" id="next-button">&gt;</button>
             </div>
         </div>
 
         <form id="search-form">
             <div class="form-section">
-                <h2>个人信息</h2>
+                <h2 class="northwest-theme">个人信息</h2>
                 <div class="form-group">
                     <label for="name">姓名</label>
                     <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
@@ -46,18 +50,31 @@
                         <option value="女">女</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="age">年龄</label>
+                    <input type="number" id="age" name="age" min="1" max="120" placeholder="请输入您的年龄" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" name="email" placeholder="请输入您的邮箱" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">电话号码</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" placeholder="请输入您的电话号码"
+                        required>
+                </div>
             </div>
 
             <div class="form-section">
-                <h2>旅游偏好</h2>
+                <h2 class="northwest-theme">旅游偏好</h2>
                 <div class="form-group">
                     <label for="destination">目的地</label>
                     <select id="destination" name="destination" required>
-                        <option value="甘肃">甘肃</option>
-                        <option value="青海">青海</option>
-                        <option value="宁夏">宁夏</option>
-                        <option value="新疆">新疆</option>
-                        <option value="陕西">陕西</option>
+                        <option value="甘肃">甘肃省（历史古迹，自然风光）</option>
+                        <option value="青海">青海省（自然风光，民俗文化，宗教文化）</option>
+                        <option value="宁夏">宁夏省（自然风光，民俗文化，历史古迹）</option>
+                        <option value="新疆">新疆维吾尔族自治区（自然风光，民俗文化，历史古迹）</option>
+                        <option value="陕西">陕西省（历史古迹，红色文化，自然风光）</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -72,209 +89,26 @@
                 </div>
                 <div class="form-group">
                     <label for="budget">预算金额 (人民币)</label>
-                    <input type="number" id="budget" name="budget" min="1000" placeholder="请输入您的预算金额" required>
+                    <input type="number" id="budget" name="budget" min="100" placeholder="请输入您的预算金额"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="travel-mode">旅游方式</label>
+                    <select id="travel-mode" name="travel-mode" required>
+                        <option value="自驾">自驾</option>
+                        <option value="跟团">跟团</option>
+                        <option value="自由行">自由行</option>
+                    </select>
                 </div>
             </div>
 
-            <div class="form-section">
-                <h2>特殊要求</h2>
-                <div class="form-group">
-                    <label>不想去的地方</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="no-desert" name="avoid" value="沙漠地区">
-                            <label for="no-desert">沙漠地区</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="no-mountain" name="avoid" value="山区">
-                            <label for="no-mountain">山区</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>旅游方式</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="self-driving" name="travel-mode" value="自驾" checked>
-                            <label for="self-driving">自驾</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="group-tour" name="travel-mode" value="跟团">
-                            <label for="group-tour">跟团</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="free-travel" name="travel-mode" value="自由行">
-                            <label for="free-travel">自由行</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button type="submit">获取旅游推荐</button>
+            <button type="submit" class="northwest-theme">获取旅游推荐</button>
         </form>
-
-        <div class="results-container" id="results">
-            <h2>为您推荐的西北 5A 级景区旅游景点</h2>
-            <div id="recommendations"></div>
-        </div>
     </div>
-    <footer>
-        <p>© 2025 西北 5A 级景区旅游攻略. 版权所有.</p>
+    <footer class="northwest-theme">
+        <p>© 2025西北5A级景区旅游攻略. 版权所有.</p>
     </footer>
     <script src="script.js"></script>
-    <script>
-        // 动态欢迎语
-        const greetingElement = document.getElementById('dynamic-greeting');
-        const hours = new Date().getHours();
-        if (hours < 12) {
-            greetingElement.textContent = "早上好！欢迎来到西北 5A 级景区旅游攻略";
-        } else if (hours < 18) {
-            greetingElement.textContent = "下午好！欢迎来到西北 5A 级景区旅游攻略";
-        } else {
-            greetingElement.textContent = "晚上好！欢迎来到西北 5A 级景区旅游攻略";
-        }
-
-        // 智能推荐提示
-        document.getElementById('search-input').addEventListener('input', (e) => {
-            const searchTerm = e.target.value.trim().toLowerCase();
-            if (searchTerm.length > 2) {
-                const suggestions = attractions
-                    .filter(attraction => attraction.name.toLowerCase().includes(searchTerm))
-                    .map(attraction => attraction.name)
-                    .slice(0, 5);
-                if (suggestions.length > 0) {
-                    alert(`您可能感兴趣的景点: ${suggestions.join(', ')}`);
-                }
-            }
-        });
-
-        document.getElementById('search-button').addEventListener('click', () => {
-            const searchTerm = document.getElementById('search-input').value.trim().toLowerCase();
-            if (!searchTerm) {
-                alert('请输入搜索关键词！');
-                return;
-            }
-
-            const filteredAttractions = attractions.filter(attraction =>
-                attraction.name.toLowerCase().includes(searchTerm)
-            );
-
-            if (filteredAttractions.length > 0) {
-                const recommendationsData = encodeURIComponent(JSON.stringify(filteredAttractions));
-                const userData = {
-                    name: '游客',
-                    gender: '未知',
-                    destination: '',
-                    travelType: '',
-                    budget: 0,
-                    travelMode: '',
-                    avoid: []
-                };
-                const userDataEncoded = encodeURIComponent(JSON.stringify(userData));
-                window.location.href = `recommendation.html?recommendations=${recommendationsData}&userData=${userDataEncoded}`;
-            } else {
-                alert('未找到相关景点，请尝试其他关键词。');
-            }
-        });
-
-        document.getElementById('search-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const userData = {
-                name: document.getElementById('name').value,
-                gender: document.getElementById('gender').value,
-                destination: document.getElementById('destination').value,
-                travelType: document.getElementById('travel-type').value,
-                budget: parseInt(document.getElementById('budget').value),
-                travelMode: document.querySelector('input[name="travel-mode"]:checked').value,
-                avoid: Array.from(document.querySelectorAll('input[name="avoid"]:checked')).map(checkbox => checkbox.value)
-            };
-            const recommendations = generateRecommendations(userData, attractions);
-            const recommendationsData = encodeURIComponent(JSON.stringify(recommendations));
-            const userDataEncoded = encodeURIComponent(JSON.stringify(userData));
-            window.location.href = `recommendation.html?recommendations=${recommendationsData}&userData=${userDataEncoded}`;
-        });
-
-        // 动态加载图片到画廊
-        const galleryImages = [
-            { src: 'images/茶卡盐湖.jpg', name: '茶卡盐湖' },
-            { src: 'images/敦煌莫高窟.jpg', name: '敦煌莫高窟' },
-            { src: 'images/贺兰山岩画.jpg', name: '贺兰山岩画' },
-            { src: 'images/华清宫.jpg', name: '华清宫' },
-            { src: 'images/嘉峪关文物景区.jpg', name: '嘉峪关文物景区' },
-            { src: 'images/喀纳斯景区.jpg', name: '喀纳斯景区' },
-            { src: 'images/喀什古城.jpg', name: '喀什古城' },
-            { src: 'images/坎儿井民俗园.jpg', name: '坎儿井民俗园' },
-            { src: 'images/可可托海景区.jpg', name: '可可托海景区' },
-            { src: 'images/麦积山石窟.jpg', name: '麦积山石窟' },
-            { src: 'images/鸣沙山月牙泉.jpg', name: '鸣沙山月牙泉' },
-            { src: 'images/莫高窟.jpg', name: '莫高窟' },
-            { src: 'images/那拉提草原.png', name: '那拉提草原' },
-            { src: 'images/宁夏沙湖景区.jpg', name: '宁夏沙湖景区' },
-            { src: 'images/青海湖.jpeg', name: '青海湖' },
-            { src: 'images/塔尔寺.jpg', name: '塔尔寺' },
-            { src: 'images/天山大峡谷.jpg', name: '天山大峡谷' },
-            { src: 'images/延安革命纪念地.jpg', name: '延安革命纪念地' },
-            { src: 'images/月牙泉.jpg', name: '月牙泉' },
-            { src: 'images/张掖丹霞地质公园.jpg', name: '张掖丹霞地质公园' }
-        ];
-
-        const galleryContainer = document.getElementById('gallery-images');
-        let currentIndex = 0;
-
-        function updateGallery() {
-            galleryContainer.innerHTML = '';
-            
-            // 创建一个包装容器
-            const wrapper = document.createElement('div');
-            wrapper.style.display = 'flex';
-            wrapper.style.flexDirection = 'column';
-            wrapper.style.alignItems = 'center';
-            wrapper.style.width = '100%';
-            
-            // 创建图片元素
-            const img = document.createElement('img');
-            img.src = galleryImages[currentIndex].src;
-            img.alt = galleryImages[currentIndex].name;
-            img.style.maxWidth = '90%';
-            img.style.maxHeight = '400px';
-            img.style.objectFit = 'cover';
-            img.style.borderRadius = '8px';
-            img.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
-            
-            // 创建标题元素
-            const caption = document.createElement('div');
-            caption.textContent = galleryImages[currentIndex].name;
-            caption.style.textAlign = 'center';
-            caption.style.marginTop = '15px';
-            caption.style.fontSize = '1.5em';
-            caption.style.color = '#333';
-            caption.style.fontWeight = 'bold';
-            caption.className = 'caption';
-            
-            // 将元素添加到包装容器
-            wrapper.appendChild(img);
-            wrapper.appendChild(caption);
-            
-            // 将包装容器添加到画廊
-            galleryContainer.appendChild(wrapper);
-        }
-
-        function showNextImage() {
-            currentIndex = (currentIndex + 1) % galleryImages.length;
-            updateGallery();
-        }
-
-        function showPrevImage() {
-            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-            updateGallery();
-        }
-
-        document.getElementById('next-button').addEventListener('click', showNextImage);
-        document.getElementById('prev-button').addEventListener('click', showPrevImage);
-
-        setInterval(showNextImage, 3000); // 自动切换图片，每3秒
-
-        updateGallery(); // 初始化显示第一张图片
-    </script>
 </body>
+
 </html>
