@@ -12,7 +12,7 @@ function displayAttractionDetail(attraction) {
     detailContainer.innerHTML = ''; // 清空之前的内容
 
     // 支持多种图片格式，优雅降级
-    const imageFormats = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'];
+    const imageFormats = ['jpg', 'jpeg', 'png'];
     const imageHTML = imageFormats.map((ext, idx) => `
         <img 
             src="images/${attraction.name}.${ext}" 
